@@ -188,7 +188,6 @@ def index():
 @app.route("/verify/<codigo>")
 def verify_old(codigo):
     return redirect(url_for("verificar", codigo=codigo))
-
 @app.route("/verificar")
 def verificar():
     codigo = request.args.get("codigo", "").strip()
@@ -205,12 +204,10 @@ def verificar():
                 is_ok = str(estado).strip() in (
                     "1","True","true","verificado","válido","activo",
                     "VERIFICADO","Verificado","si","Sí","yes")
-
                 # Imagen QR base64
                 qr_b64 = row.get("qr_base64", "")
                 if not qr_b64 or len(str(qr_b64)) < 50:
                     qr_b64 = None
-
                 # Campos a mostrar
                 ocultar = {"qr_base64","url_verificacion","estado_texto",
                            "qr_path","qr_ruta","metadata","id"}
@@ -233,11 +230,9 @@ def verificar():
 
                 doc = {"ok": is_ok, "fields": fields, "qr_b64": qr_b64}
                 break
-
     return Template(TMPL).render(doc=doc, codigo=codigo)
 if __name__ == "__main__":
-    
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5050)))
+        app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5050)))
 
 
     
