@@ -6,8 +6,7 @@ services:
     startCommand: python servidor_render.py
     envVars:
       - key: GOOGLE_CREDS_JSON
-      
-        sync: false
+           sync: false
         
         
 
